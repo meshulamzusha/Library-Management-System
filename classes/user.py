@@ -11,3 +11,16 @@ class User:
     def return_book(self, book):
         if book.isbn in self.borrowed_books:
             self.borrowed_books.remove(book.isbn)
+
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "name": self.name,
+            "borrowed_books": self.borrowed_books
+        }
+
+    @staticmethod
+    def from_dict(data):
+        u = User(data["user_id"], data["name"])
+        u.borrowed_books = data["borrowed_books"]
+        return u
