@@ -63,3 +63,17 @@ class Library:
                     self.users[user.user_id] = user
         except json.JSONDecodeError:
             print(f"{self.data_file} empty or not valid json")
+
+
+    def search_book(self, query):
+        results = []
+        q = query.lower()
+        for book in self.books.values():
+            if q in book.title.lower() or q in book.author.lower():
+                results.append(book)
+        return results
+
+    def list_available_books(self):
+        available = [book for book in self.books.values() if book.is_available]
+        return available
+
