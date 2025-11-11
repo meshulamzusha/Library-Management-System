@@ -7,3 +7,11 @@ class Book:
 
     def __str__(self):
         return f"title: {self.title}, author: {self.author}, isbn: {self.isbn}, available: {self.is_available}"
+
+    def to_dict(self):
+        return {
+            "title": self.title,
+            "author": self.author,
+            "isbn": self.isbn,
+            "is_available": self.is_available
+        }
