@@ -3,6 +3,12 @@ from classes.user import User
 
 
 class Library:
+  
+      def __init__(self, data_file="data.json"):
+        self.books = {}
+        self.users = {}
+        self.data_file = data_file
+        self.load_data()
 
     def register_user(self, user):
         self.users[user.user_id] = user
