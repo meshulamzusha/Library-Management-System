@@ -37,3 +37,29 @@ class Library:
             self.save_data()
         else:
             print("Book was not borrowed")
+
+    def save_data(self):
+        data = {
+            "books": [b.to_dict() for b in self.books.values()],
+            "users": [u.to_dict() for u in self.users.values()]
+        }
+        with open(self.data_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4)
+
+    def load_data(self):
+        if not os.path.exists(self.data_file):
+            return
+        try:
+            with open(self.data_file, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                if not content:
+                    return
+                data = json.loads(content)
+                for b in data.get("books", []):
+                    book = Book.from_dict(b)
+                    self.books[book.isbn] = book
+                for u in data.get("users", []):
+                    user = User.from_dict(u)
+                    self.users[user.user_id] = user
+        except json.JSONDecodeError:
+            print(f"{self.data_file} empty or not valid json")
