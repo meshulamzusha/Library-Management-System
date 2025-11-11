@@ -8,6 +8,7 @@ class Library:
         self.users[user.user_id] = user
         self.save_data()
 
+
     def add_book(self, book):
         self.books[book.isbn] = book
         self.save_data()
