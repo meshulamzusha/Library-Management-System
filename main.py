@@ -1,3 +1,5 @@
+from classes.book import Book
+from classes.user import User
 from classes.library import Library
 
 def main():
