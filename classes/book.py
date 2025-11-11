@@ -15,3 +15,12 @@ class Book:
             "isbn": self.isbn,
             "is_available": self.is_available
         }
+
+    @staticmethod
+    def from_dict(data):
+        return Book(
+            title=data["title"],
+            author=data["author"],
+            isbn=data["isbn"],
+            is_available=data["is_available"]
+        )
